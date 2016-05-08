@@ -62,6 +62,29 @@ public class BinaryTree {
         return isBST(root);
     }
 
+    public int maxDepth() {
+        return maxDepth(root);
+    }
+
+    /*
+     * Given a binary tree, compute its "maxDepth" -- the number of nodes along
+     * the longest path from the root node down to the farthest leaf node
+     */
+    private int maxDepth(Node current) {
+        if (current == null) {
+            return 0;
+        }
+
+        int sum1 = 1, sum2 = 1;
+        sum1 = sum1 + maxDepth(current.left);
+        sum2 = sum2 + maxDepth(current.right);
+
+        return Math.max(sum1, sum2);
+    }
+
+    /*
+     * Returns true if a binary tree is a binary search tree.
+     */
     private boolean isBST(Node current) {
         if (current == null) {
             return true;
@@ -76,6 +99,10 @@ public class BinaryTree {
         return isBST(current.left) && isBST(current.right);
     }
 
+    /*
+     * Given two binary trees, return true if they are structurally identical --
+     * they are made of nodes with the same values arranged in the same way.
+     */
     private boolean sameTree(Node first, Node second) {
         if ((first == null) && (second != null)) {
             return false;
@@ -91,6 +118,10 @@ public class BinaryTree {
         return sameTree(first.left, second.left) && sameTree(first.right, second.right);
     }
 
+    /*
+     * For each node in a binary search tree, create a new duplicate node, and
+     * insert the duplicate as the left child of the original node.
+     */
     private void doubleTree(Node current) {
         if (current == null) {
             return;
@@ -104,6 +135,10 @@ public class BinaryTree {
         current.left.left = temp;
     }
 
+    /*
+     * Change a tree so that the roles of the left and right pointers are
+     * swapped at every node.
+     */
     private void mirror(Node current) {
         if (current == null) {
             return;
@@ -117,6 +152,10 @@ public class BinaryTree {
         mirror(current.right);
     }
 
+    /*
+     * Given a binary tree, print out all of its root-to-leaf paths, one per
+     * line.
+     */
     private void printPaths(Node current, int[] path, int pathLen) {
         if (current == null) {
             return;
@@ -141,6 +180,11 @@ public class BinaryTree {
         System.out.println();
     }
 
+    /*
+     * Given a binary tree and a sum, return true if the tree has a root-to-leaf
+     * path such that adding up all the values along the path equals the given
+     * sum. Return false if no such path can be found.
+     */
     private boolean hasPathSum(Node current, int sum) {
         if (current == null) {
             return false;
@@ -157,6 +201,12 @@ public class BinaryTree {
 
     }
 
+    /*
+     * Given a binary tree, print out the nodes of the tree according to a
+     * bottom-up "postorder" traversal -- both subtrees of a node are printed
+     * out completely before the node itself is printed, and each left subtree
+     * is printed before the right subtree.
+     */
     private void printPostOrder(Node current) {
         if (current == null) {
             return;
@@ -167,6 +217,10 @@ public class BinaryTree {
         System.out.println(current.data);
     }
 
+    /*
+     * Given a binary search tree (aka an "ordered binary tree"), iterate over
+     * the nodes to print them out in increasing order
+     */
     private void printTree(Node current) {
         if (current == null) {
             return;
@@ -176,6 +230,10 @@ public class BinaryTree {
         printTree(current.right);
     }
 
+    /*
+     * Given a non-empty binary search tree (an ordered binary tree), return the
+     * maximum data value found in that tree.
+     */
     private int maxValue(Node current) {
         if (current == null) {
             return Integer.MAX_VALUE;
@@ -187,6 +245,10 @@ public class BinaryTree {
         return maxValue(current.right);
     }
 
+    /*
+     * Given a non-empty binary search tree (an ordered binary tree), return the
+     * minimum data value found in that tree.
+     */
     private int minValue(Node current) {
         if (current == null) {
             return Integer.MIN_VALUE;
@@ -198,6 +260,10 @@ public class BinaryTree {
         return minValue(current.left);
     }
 
+    /*
+     * This problem demonstrates simple binary tree traversal. Given a binary
+     * tree, count the number of nodes in the tree.
+     */
     private int calculateSize(Node current) {
         if (current == null) {
             return 0;
@@ -206,6 +272,10 @@ public class BinaryTree {
         }
     }
 
+    /*
+     * Given a binary search tree and a "target" value, search the tree to see
+     * if it contains the target.
+     */
     private boolean lookup(Node current, int data) {
         if (current == null) {
             return false;
@@ -221,6 +291,10 @@ public class BinaryTree {
         return false;
     }
 
+    /*
+     * Given a binary search tree and a number, insert a new node with the given
+     * number into the tree in the correct place.
+     */
     private Node insert(Node current, int data) {
         if (current == null) {
             current = new Node(data);
